@@ -1,4 +1,6 @@
 import random
+import time
+
 class Uebungen:
     @staticmethod
     def mittelwert_berechen():
@@ -81,4 +83,9 @@ if __name__ == '__main__':
     #print(uebungen_13_03.get_AT_gehalt("ATGCTAGT", 2))
     #print(uebungen_13_03.get_AT_gehalt("AAAA", 0))
     #print(uebungen_13_03.get_AT_gehalt("GGTA", 7))
+    t0 = time.time()
     print(uebungen_13_03.drogrie_aufgabe())
+    t1 = time.time()
+    t = (t1 - t0) * 1000
+    print("Ende")
+    print(f'benötigte Zeit in Milli-Sekunden: {t}')
