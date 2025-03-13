@@ -51,9 +51,32 @@ class Uebungen:
         AT_gehalt = (A_anzahl + T_anzahl) / laenge
         return round(AT_gehalt, runden)
 
+    @staticmethod
+    def drogrie_aufgabe():
+        end_preis = 711
+        ziel_nach_multiplikation = end_preis * 100 ** 3
+
+        for a in range(1, end_preis):
+            for b in range(a, end_preis - a):
+                for c in range(b, end_preis - a - b):
+                    d = end_preis - a - b - c
+                    if a * b * c * d == ziel_nach_multiplikation:
+                        return (a, b, c, d)
+        return None
+
+    #Quiz
+    #Wie geben Sie den String 'Hallo' in der Mitte von insgesamt 35 Zeichen aufgefüllt mit ' ! ' aus?
+    #1. 'Hallo'.center(35, '!' )
+    #2.  center( 'Hallo', 35, '!' )
+    #3. 'Hallo' + 35 *'!'
+    #4. 35 *'!' + 'Hallo'
+    #5. center(35, '!' , 'Hallo')
+    #Antwort: 1 ist korrekt
+
 if __name__ == '__main__':
     uebungen_13_03 = Uebungen()
     #print(uebungen_13_03.summe_der_wuerfe(100))
-    print(uebungen_13_03.get_AT_gehalt("ATGCTAGT", 2))
-    print(uebungen_13_03.get_AT_gehalt("AAAA", 0))
-    print(uebungen_13_03.get_AT_gehalt("GGTA", 7))
+    #print(uebungen_13_03.get_AT_gehalt("ATGCTAGT", 2))
+    #print(uebungen_13_03.get_AT_gehalt("AAAA", 0))
+    #print(uebungen_13_03.get_AT_gehalt("GGTA", 7))
+    print(uebungen_13_03.drogrie_aufgabe())
