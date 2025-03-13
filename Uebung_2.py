@@ -60,6 +60,8 @@ class Uebungen:
             for b in range(a, end_preis - a):
                 for c in range(b, end_preis - a - b):
                     d = end_preis - a - b - c
+                    if d <= 1:
+                        continue
                     if a * b * c * d == ziel_nach_multiplikation:
                         return (a, b, c, d)
         return None
