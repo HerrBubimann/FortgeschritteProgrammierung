@@ -162,7 +162,6 @@ class Uebungen:
 
         self.speichere_punkte(dateiname, gewonnen_anzahl, verloren_anzahl)
 
-
 if __name__ == '__main__':
     uebungen_17_03 = Uebungen()
     uebungen_17_03.main()
