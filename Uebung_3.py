@@ -51,34 +51,49 @@ class Uebungen:
             f.write(f"{user_punkte}\n")
             f.write(f"{computer_punkte}\n")
 
-    def main(self):
-        spielen = True
-        liste_der_ergebnisse = []
-        dateiname = "Punkte.txt"
-        gewonnen_anzahl,verloren_anzahl = self.lade_punkte(dateiname)
-
+    @staticmethod
+    def drucke_zwischenstand(gewonnen_anzahl, verloren_anzahl):
         print(f"Zwischenstand {gewonnen_anzahl} : {verloren_anzahl}")
 
+    def spiele_runden(self):
+        liste_der_ergebnisse = []
+        spielen = True
         while spielen:
             liste_der_ergebnisse.append(self.schere_stein_papier())
             print("Willst du nochmal spielen? ja oder nein")
             if input().lower().startswith("n"):
                 spielen = False
+        return liste_der_ergebnisse
 
-        gewonnen_anzahl = liste_der_ergebnisse.count("Gewonnen")
-        verloren_anzahl = liste_der_ergebnisse.count("Verloren")
-        unenschieden_anzahl = liste_der_ergebnisse.count("Unentschieden")
-
-        gesamtgewinner = "Unentschieden"
+    @staticmethod
+    def bestimme_gesamtgewinner(gewonnen_anzahl, verloren_anzahl):
         if gewonnen_anzahl > verloren_anzahl:
-            gesamtgewinner = "Du bist der Gesamtsieger!"
+            return "Du bist der Gesamtsieger!"
         elif verloren_anzahl > gewonnen_anzahl:
-            gesamtgewinner = "Du hast insgesamt verloren."
+            return "Du hast insgesamt verloren."
+        return "Unentschieden"
 
+    @staticmethod
+    def drucke_endergebnisse(gewonnen_anzahl, verloren_anzahl, unenschieden_anzahl, liste_der_ergebnisse, gesamtgewinner):
         print(f"Du hast beim Spielen folgende Ergebnisse erzielt: Du hast {gewonnen_anzahl} mal gewonnen, "
               f"{verloren_anzahl} mal verloren und {unenschieden_anzahl} mal unentschieden gespielt.\n"
               f"Dein Gesamtverlauf ist {liste_der_ergebnisse}.\n"
-              f"Gesamt Ergebnis: {gesamtgewinner}")
+              f"Gesamt Ergebnis: {gesamtgewinner} ({gewonnen_anzahl} : {verloren_anzahl}))")
+
+    def main(self):
+        dateiname = "Punkte.txt"
+        gewonnen_anzahl, verloren_anzahl = self.lade_punkte(dateiname)
+        self.drucke_zwischenstand(gewonnen_anzahl, verloren_anzahl)
+
+        liste_der_ergebnisse = self.spiele_runden()
+
+        gewonnen_anzahl = gewonnen_anzahl + liste_der_ergebnisse.count("Gewonnen")
+        verloren_anzahl = verloren_anzahl + liste_der_ergebnisse.count("Verloren")
+        unenschieden_anzahl = liste_der_ergebnisse.count("Unentschieden")
+
+        gesamtgewinner = self.bestimme_gesamtgewinner(gewonnen_anzahl, verloren_anzahl)
+
+        self.drucke_endergebnisse(gewonnen_anzahl, verloren_anzahl, unenschieden_anzahl, liste_der_ergebnisse, gesamtgewinner)
 
         self.speichere_punkte(dateiname, gewonnen_anzahl, verloren_anzahl)
 
