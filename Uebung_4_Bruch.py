@@ -8,14 +8,15 @@ class Bruch:
         self.kuerzen()
 
     def kuerzen(self):
-        teiler = self.ggT(self.zaehler, self.nenner)
+        teiler = self.groeßte_gemeinsame_Teiler(self.zaehler, self.nenner)
         self.zaehler //= teiler
         self.nenner //= teiler
         if self.nenner < 0:
             self.zaehler *= -1
             self.nenner *= -1
 
-    def ggT(self, zaehler, nenner):
+    @staticmethod
+    def groeßte_gemeinsame_Teiler(zaehler, nenner):
         while nenner:
             zaehler, nenner = nenner, zaehler % nenner
         return abs(zaehler)
