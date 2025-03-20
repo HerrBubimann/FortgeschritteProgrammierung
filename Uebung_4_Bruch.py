@@ -29,6 +29,11 @@ class Bruch:
         neuer_nenner = self.nenner * bruch_addieren.nenner
         return Bruch(neuer_zaehler, neuer_nenner)
 
+    def add(self, bruch_addieren):
+        neuer_zaehler = self.zaehler * bruch_addieren.nenner + bruch_addieren.zaehler * self.nenner
+        neuer_nenner = self.nenner * bruch_addieren.nenner
+        return Bruch(neuer_zaehler, neuer_nenner)
+
     def float_bruch(self):
         return self.zaehler / self.nenner
 
@@ -39,8 +44,10 @@ class Bruch:
         print(bruch1)
         print(bruch2)
 
-        bruch3 = bruch1.__add__(bruch2)
+        bruch3_add = bruch1.add(bruch2)
+        bruch3 = bruch1 + bruch2
         print(bruch3)
+        print(bruch3_add)
 
         bruch4 = Bruch(1, 3)
         print(bruch4.float_bruch())
