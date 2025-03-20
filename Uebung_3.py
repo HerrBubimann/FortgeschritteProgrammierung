@@ -34,7 +34,6 @@ class Uebungen:
 
     @staticmethod
     def lade_punkte(dateiname):
-        # Wenn die Datei existiert, lade die gespeicherten Punkte
         if os.path.exists(dateiname):
             with open(dateiname, 'r') as f:
                 lines = f.readlines()
@@ -46,7 +45,6 @@ class Uebungen:
 
     @staticmethod
     def speichere_punkte(dateiname, user_punkte, computer_punkte):
-        # Speichere die Punkte in die Datei
         with open(dateiname, 'w') as f:
             f.write(f"{user_punkte}\n")
             f.write(f"{computer_punkte}\n")
