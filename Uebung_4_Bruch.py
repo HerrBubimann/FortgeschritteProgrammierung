@@ -1,4 +1,3 @@
-import math
 
 class Bruch:
     def __init__(self, zaehler, nenner=1):
@@ -9,12 +8,17 @@ class Bruch:
         self.kuerzen()
 
     def kuerzen(self):
-        teiler = math.gcd(self.zaehler, self.nenner)
+        teiler = self.ggT(self.zaehler, self.nenner)
         self.zaehler //= teiler
         self.nenner //= teiler
         if self.nenner < 0:
             self.zaehler *= -1
             self.nenner *= -1
+
+    def ggT(self, zaehler, nenner):
+        while nenner:
+            zaehler, nenner = nenner, zaehler % nenner
+        return abs(zaehler)
 
     def __str__(self):
         return f"{self.zaehler}/{self.nenner}"
