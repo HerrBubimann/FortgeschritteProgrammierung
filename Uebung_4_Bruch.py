@@ -1,4 +1,3 @@
-
 class Bruch:
     def __init__(self, zaehler, nenner=1):
         if nenner == 0:
@@ -16,7 +15,7 @@ class Bruch:
             self.nenner *= -1
 
     @staticmethod
-    def groeßte_gemeinsame_Teiler(zaehler, nenner):
+    def groeßte_gemeinsame_teiler(zaehler, nenner):
         while nenner:
             zaehler, nenner = nenner, zaehler % nenner
         return abs(zaehler)
@@ -56,8 +55,6 @@ class Bruch:
         bruch2.__str__()
         bruch3.__str__()
         bruch4.__str__()
-
-
 
 if __name__ == '__main__':
     Bruch.main()
