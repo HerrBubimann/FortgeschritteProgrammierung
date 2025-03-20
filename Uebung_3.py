@@ -1,4 +1,5 @@
 import random
+import os
 class Uebungen:
 
     @staticmethod
@@ -31,9 +32,33 @@ class Uebungen:
             print("Computer gewinnt!")
             return "Verloren"
 
+    @staticmethod
+    def lade_punkte(dateiname):
+        # Wenn die Datei existiert, lade die gespeicherten Punkte
+        if os.path.exists(dateiname):
+            with open(dateiname, 'r') as f:
+                lines = f.readlines()
+                if len(lines) == 2:
+                    user_punkte = int(lines[0].strip())
+                    computer_punkte = int(lines[1].strip())
+                    return user_punkte, computer_punkte
+        return 0, 0
+
+    @staticmethod
+    def speichere_punkte(dateiname, user_punkte, computer_punkte):
+        # Speichere die Punkte in die Datei
+        with open(dateiname, 'w') as f:
+            f.write(f"{user_punkte}\n")
+            f.write(f"{computer_punkte}\n")
+
     def main(self):
         spielen = True
         liste_der_ergebnisse = []
+        dateiname = "Punkte.txt"
+        gewonnen_anzahl,verloren_anzahl = self.lade_punkte(dateiname)
+
+        print(f"Zwischenstand {gewonnen_anzahl} : {verloren_anzahl}")
+
         while spielen:
             liste_der_ergebnisse.append(self.schere_stein_papier())
             print("Willst du nochmal spielen? ja oder nein")
@@ -55,6 +80,7 @@ class Uebungen:
               f"Dein Gesamtverlauf ist {liste_der_ergebnisse}.\n"
               f"Gesamt Ergebnis: {gesamtgewinner}")
 
+        self.speichere_punkte(dateiname, gewonnen_anzahl, verloren_anzahl)
 
 if __name__ == '__main__':
     uebungen_17_03 = Uebungen()
