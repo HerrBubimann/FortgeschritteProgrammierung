@@ -1,5 +1,5 @@
 class Bruch:
-    def __init__(self, zaehler, nenner=1):
+    def __init__(self, zaehler=0, nenner=1):
         if nenner == 0:
             raise ValueError("Nenner darf nicht null sein.")
         self.zaehler = zaehler
@@ -21,7 +21,7 @@ class Bruch:
         return abs(zaehler)
 
     def __str__(self):
-        print(f"{self.zaehler}/{self.nenner}")
+        return f"{self.zaehler}/{self.nenner}"
 
     def to_string(self):
         print(f"{self.zaehler}/{self.nenner}")
@@ -38,27 +38,24 @@ class Bruch:
 
     def float_bruch(self):
         return self.zaehler / self.nenner
-
+    
     @staticmethod
     def main():
         bruch1 = Bruch(3, 4)
         bruch2 = Bruch(1, 2)
-        #print(bruch1)
-        #print(bruch2)
+        print(bruch1)
+        print(bruch2)
 
         bruch3_add = bruch1.add(bruch2)
+        bruch4_add = bruch2.add(bruch1)
+        bruch_5_2 = Bruch()
         bruch3 = bruch1 + bruch2
         bruch3.to_string()
-        #print(bruch3)
-        #print(bruch3_add)
+        print(bruch3)
+        print(bruch3_add)
 
         bruch4 = Bruch(1, 3)
-        #print(bruch4.float_bruch())
-
-        bruch1.__str__()
-        bruch2.__str__()
-        bruch3.__str__()
-        bruch4.__str__()
+        print(bruch4.float_bruch())
 
 if __name__ == '__main__':
     Bruch.main()
