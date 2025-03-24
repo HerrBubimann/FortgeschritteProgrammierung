@@ -1,7 +1,6 @@
 import random
 import os
 
-
 class Uebungen:
     @staticmethod
     def schere_stein_papier():
