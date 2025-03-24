@@ -7,7 +7,7 @@ class Bruch:
         self.kuerzen()
 
     def kuerzen(self):
-        teiler = self.groeßte_gemeinsame_Teiler(self.zaehler, self.nenner)
+        teiler = self.groeßte_gemeinsame_teiler(self.zaehler, self.nenner)
         self.zaehler //= teiler
         self.nenner //= teiler
         if self.nenner < 0:
@@ -21,10 +21,10 @@ class Bruch:
         return abs(zaehler)
 
     def __str__(self):
-        return f"{self.zaehler}/{self.nenner}"
+        print(f"{self.zaehler}/{self.nenner}")
 
     def to_string(self):
-        return f"{self.zaehler}/{self.nenner}"
+        print(f"{self.zaehler}/{self.nenner}")
 
     def __add__(self, bruch_addieren):
         neuer_zaehler = self.zaehler * bruch_addieren.nenner + bruch_addieren.zaehler * self.nenner
@@ -43,16 +43,17 @@ class Bruch:
     def main():
         bruch1 = Bruch(3, 4)
         bruch2 = Bruch(1, 2)
-        print(bruch1)
-        print(bruch2)
+        #print(bruch1)
+        #print(bruch2)
 
         bruch3_add = bruch1.add(bruch2)
         bruch3 = bruch1 + bruch2
-        print(bruch3)
-        print(bruch3_add)
+        bruch3.to_string()
+        #print(bruch3)
+        #print(bruch3_add)
 
         bruch4 = Bruch(1, 3)
-        print(bruch4.float_bruch())
+        #print(bruch4.float_bruch())
 
         bruch1.__str__()
         bruch2.__str__()
