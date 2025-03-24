@@ -152,8 +152,8 @@ class Uebungen:
 
         liste_der_ergebnisse = Uebungen.spiele_runden()
 
-        gewonnen_anzahl = gewonnen_anzahl + liste_der_ergebnisse.count("Gewonnen")
-        verloren_anzahl = verloren_anzahl + liste_der_ergebnisse.count("Verloren")
+        gewonnen_anzahl += gewonnen_anzahl + liste_der_ergebnisse.count("Gewonnen")
+        verloren_anzahl += verloren_anzahl + liste_der_ergebnisse.count("Verloren")
         unentschieden_anzahl = liste_der_ergebnisse.count("Unentschieden")
 
         gesamtgewinner = Uebungen.bestimme_gesamtgewinner(gewonnen_anzahl, verloren_anzahl)
