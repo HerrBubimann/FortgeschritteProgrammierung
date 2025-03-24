@@ -92,7 +92,7 @@ def main():
     print(f"Multiplikation: {rechner_1 * rechner_2}")
     print(f"Division: {rechner_1 / rechner_2}")
     print("\n")
-
+    
     wert = 7
     print("ohne Klasse")
     print(f"Addition: {rechner_1 + wert}")
