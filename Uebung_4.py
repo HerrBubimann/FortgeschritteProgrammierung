@@ -3,7 +3,7 @@ class Uebungen:
     @staticmethod
     def drei_chinesen(text, variable):
         """
-        Static-Methode: Ersetzt bestimmte Zeichen im Text durch den Wert der 'variable'.
+        Ersetzt bestimmte Zeichen im Text durch den Wert der 'variable'.
         """
         reinfolge_zu_ersetzten = {
             "ie": variable, "au": variable, "eu": variable, "ei": variable,
@@ -12,18 +12,12 @@ class Uebungen:
         }
 
         for key in reinfolge_zu_ersetzten:
-            """ 
-            Ersetzt alle Vorkommen von 'key' im Text durch den entsprechenden Wert (variable).
-            """
             text = text.replace(key, reinfolge_zu_ersetzten[key])
 
         return text
 
     @staticmethod
     def main():
-        """
-        Hauptmethode: Testet die Ersetzungen für eine Liste von Wörtern mit verschiedenen 'variable' Werten.
-        """
         testworte = ["Drei", "Chinesen", "mit", "Kontrabass", "sassen", "auf", "der", "Strasse", "und", "erzählten",
                      "sich", "was"]
 
