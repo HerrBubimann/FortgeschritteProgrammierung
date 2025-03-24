@@ -23,6 +23,9 @@ class Bruch:
     def __str__(self):
         return f"{self.zaehler}/{self.nenner}"
 
+    def to_string(self):
+        return f"{self.zaehler}/{self.nenner}"
+
     def __add__(self, bruch_addieren):
         neuer_zaehler = self.zaehler * bruch_addieren.nenner + bruch_addieren.zaehler * self.nenner
         neuer_nenner = self.nenner * bruch_addieren.nenner
