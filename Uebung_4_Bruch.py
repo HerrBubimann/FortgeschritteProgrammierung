@@ -38,7 +38,7 @@ class Bruch:
 
     def float_bruch(self):
         return self.zaehler / self.nenner
-    
+
     @staticmethod
     def main():
         bruch1 = Bruch(3, 4)

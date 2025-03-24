@@ -89,7 +89,8 @@ class Uebungen:
         """
         print(f"Zwischenstand {gewonnen_anzahl} : {verloren_anzahl}")
 
-    def spiele_runden(self):
+    @staticmethod
+    def spiele_runden():
         """
         Diese Methode führt mehrere Runden des Spiels durch und speichert die Ergebnisse jeder Runde.
 
@@ -99,7 +100,7 @@ class Uebungen:
         liste_der_ergebnisse = []
         spielen = True
         while spielen:
-            liste_der_ergebnisse.append(self.schere_stein_papier())
+            liste_der_ergebnisse.append(Uebungen.schere_stein_papier())
             print("Willst du nochmal spielen? ja oder nein")
             if input().lower().startswith("n"):
                 spielen = False
@@ -124,7 +125,7 @@ class Uebungen:
         return "Unentschieden"
 
     @staticmethod
-    def drucke_endergebnisse(gewonnen_anzahl, verloren_anzahl, unenschieden_anzahl, liste_der_ergebnisse,
+    def drucke_endergebnisse(gewonnen_anzahl, verloren_anzahl, unentschieden_anzahl, liste_der_ergebnisse,
                              gesamtgewinner):
         """
         Diese Methode druckt die Endergebnisse des Spiels, einschließlich der Anzahl der gewonnenen, verlorenen und unentschiedenen Runden.
@@ -132,36 +133,37 @@ class Uebungen:
         Parameter:
             - gewonnen_anzahl: Anzahl der gewonnenen Spiele des Benutzers.
             - verloren_anzahl: Anzahl der verlorenen Spiele des Benutzers.
-            - unenschieden_anzahl: Anzahl der unentschiedenen Spiele.
+            - unentschieden_anzahl: Anzahl der unentschiedenen Spiele.
             - liste_der_ergebnisse: Liste der Ergebnisse aller gespielten Runden.
             - gesamtgewinner: Der Gesamtsieger des Spiels.
         """
         print(f"Du hast beim Spielen folgende Ergebnisse erzielt: Du hast {gewonnen_anzahl} mal gewonnen, "
-              f"{verloren_anzahl} mal verloren und {unenschieden_anzahl} mal unentschieden gespielt.\n"
+              f"{verloren_anzahl} mal verloren und {unentschieden_anzahl} mal unentschieden gespielt.\n"
               f"Dein Gesamtverlauf ist {liste_der_ergebnisse}.\n"
-              f"Gesamt Ergebnis: {gesamtgewinner} ({gewonnen_anzahl} : {verloren_anzahl}))")
+              f"Gesamt Ergebnis: {gesamtgewinner} ({gewonnen_anzahl} : {verloren_anzahl})")
 
-    def main(self):
+    @staticmethod
+    def main():
         """
         Diese Methode führt das gesamte Spiel durch, lädt die Punktzahlen, spielt Runden, aktualisiert die Punkte und gibt die Endergebnisse aus.
         """
         dateiname = "Punkte.txt"
-        gewonnen_anzahl, verloren_anzahl = self.lade_punkte(dateiname)
-        self.drucke_zwischenstand(gewonnen_anzahl, verloren_anzahl)
+        gewonnen_anzahl, verloren_anzahl = Uebungen.lade_punkte(dateiname)
+        Uebungen.drucke_zwischenstand(gewonnen_anzahl, verloren_anzahl)
 
-        liste_der_ergebnisse = self.spiele_runden()
+        liste_der_ergebnisse = Uebungen.spiele_runden()
 
         gewonnen_anzahl = gewonnen_anzahl + liste_der_ergebnisse.count("Gewonnen")
         verloren_anzahl = verloren_anzahl + liste_der_ergebnisse.count("Verloren")
-        unenschieden_anzahl = liste_der_ergebnisse.count("Unentschieden")
+        unentschieden_anzahl = liste_der_ergebnisse.count("Unentschieden")
 
-        gesamtgewinner = self.bestimme_gesamtgewinner(gewonnen_anzahl, verloren_anzahl)
+        gesamtgewinner = Uebungen.bestimme_gesamtgewinner(gewonnen_anzahl, verloren_anzahl)
 
-        self.drucke_endergebnisse(gewonnen_anzahl, verloren_anzahl, unenschieden_anzahl, liste_der_ergebnisse,
+        Uebungen.drucke_endergebnisse(gewonnen_anzahl, verloren_anzahl, unentschieden_anzahl, liste_der_ergebnisse,
                                   gesamtgewinner)
 
-        self.speichere_punkte(dateiname, gewonnen_anzahl, verloren_anzahl)
+        Uebungen.speichere_punkte(dateiname, gewonnen_anzahl, verloren_anzahl)
+
 
 if __name__ == '__main__':
-    uebungen_17_03 = Uebungen()
-    uebungen_17_03.main()
+    Uebungen.main()
