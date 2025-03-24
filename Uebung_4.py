@@ -1,7 +1,7 @@
 class Uebungen:
 
     @staticmethod
-    def drei_chinesen(text, variable):
+    def drei_chinesen(wort, variable):
         """
         Ersetzt bestimmte Zeichen im Text durch den Wert der 'variable'.
         """
@@ -12,9 +12,8 @@ class Uebungen:
         }
 
         for key in reinfolge_zu_ersetzten:
-            text = text.replace(key, reinfolge_zu_ersetzten[key])
-
-        return text
+            wort = wort.replace(key, reinfolge_zu_ersetzten[key])
+        return wort
 
     @staticmethod
     def main():
@@ -57,6 +56,6 @@ class Katze:
 
 
 if __name__ == '__main__':
-    #uebungen_20_03 = Uebungen()
-    #uebungen_20_03.main()
-    Katze.main()
+    uebungen_20_03 = Uebungen()
+    uebungen_20_03.main()
+    #Katze.main()
