@@ -37,7 +37,7 @@ class Bruch:
         return Bruch(neuer_zaehler, neuer_nenner)
 
     def float_bruch(self):
-        return self.zaehler / self.nenner
+        return float(f"{self.zaehler / self.nenner:.15f}")
 
     @staticmethod
     def main():
