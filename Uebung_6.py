@@ -1,5 +1,6 @@
 from timeit import repeat
 
+
 class Sorter:
     @staticmethod
     def bubble_sort(arr):
@@ -17,7 +18,7 @@ class Sorter:
     def insertion_sort(arr):
         n = len(arr)
         if n <= 1:
-            return
+            return arr
 
         for i in range(1, n):
             key = arr[i]
@@ -57,29 +58,51 @@ class Sorter:
 
         return result
 
-    def merge_sort(self,array):
+    @staticmethod
+    def merge_sort(array):
         if len(array) < 2:
             return array
 
         midpoint = len(array) // 2
-        print(f"1:{array[:midpoint]} 2:{array[midpoint:]}")
-        return self.merge(
-            left=self.merge_sort(array[:midpoint]),
-            right=self.merge_sort(array[midpoint:]))
+        #print(f"links:{array[:midpoint]} rechts:{array[midpoint:]}")
 
-def main():
-    '''    algorithm = "bubble"
-        setup_code = """
-    from __main__ import Sorter
-    arr = [2, 8, 4, 6, 2, 7]
-        """
-        stmt_code = "Sorter.bubble_sort(arr)"
-        times = repeat(setup=setup_code, stmt=stmt_code, repeat=3, number=10)
-        print(f"Algorithm: {algorithm}. Minimum execution time: {min(times)}")'''
-    sor = Sorter()
-    array = [2,4,1,3,6,8,5,7]
-    foo = sor.merge_sort(array)
-    print(foo)
+        return Sorter.merge(
+            left=Sorter.merge_sort(array[:midpoint]),
+            right=Sorter.merge_sort(array[midpoint:]))
+
+
+def run_sorting_algorithm(algorithm, array):
+    # Create an instance of Sorter
+    sorter = Sorter()
+
+    # Get the actual function from the sorter instance
+    if algorithm == "sorted":
+        func = sorted
+    else:
+        func = getattr(sorter, algorithm)
+
+    # The statement to time - we need to pass the function directly
+    # We'll use a lambda to avoid import issues
+    stmt = f"{algorithm}({array.copy()})"
+
+    # Setup code that imports the Sorter class and gets the function
+    setup_code = f"""
+from __main__ import Sorter
+sorter = Sorter()
+{algorithm} = sorter.{algorithm}
+"""
+
+    # Execute the code ten different times and return the time
+    times = repeat(setup=setup_code, stmt=stmt, repeat=3, number=10)
+
+    # Finally, display the name of the algorithm and the
+    # minimum time it took to run
+    print(f"Algorithm: {algorithm}. Minimum execution time: {min(times)}")
+
 
 if __name__ == "__main__":
-    main()
+    array = [2, 4, 1, 3, 6, 8, 5, 7]
+    #run_sorting_algorithm("merge_sort", array.copy())
+    sor = Sorter()
+    foo = sor.merge_sort(array.copy())
+    print(foo)
