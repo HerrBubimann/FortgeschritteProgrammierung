@@ -1,5 +1,5 @@
 from timeit import repeat
-
+from random import randint
 
 class Sorter:
     @staticmethod
@@ -70,6 +70,47 @@ class Sorter:
             left=Sorter.merge_sort(array[:midpoint]),
             right=Sorter.merge_sort(array[midpoint:]))
 
+    def quick_sort(self, array):
+        if len(array) < 2:
+            return array
+
+        low, same, high = [], [], []
+
+        pivot = array[randint(0, len(array) - 1)]
+
+        for item in array:
+            if item < pivot:
+                low.append(item)
+            elif item == pivot:
+                same.append(item)
+            elif item > pivot:
+                high.append(item)
+
+        return self.quick_sort(low) + same + self.quick_sort(high)
+
+
+    def tim_sort(self, array):
+        min_run = 32
+        n = len(array)
+
+        for i in range(0, n, min_run):
+            self.insertion_sort(array, i, min((i + min_run - 1), n - 1))
+
+        size = min_run
+        while size < n:
+            for start in range(0, n, size * 2):
+                midpoint = start + size - 1
+                end = min((start + size * 2 - 1), (n - 1))
+
+                merged_array = self.merge(
+                    left=array[start:midpoint + 1],
+                    right=array[midpoint + 1:end + 1])
+
+                array[start:start + len(merged_array)] = merged_array
+
+            size *= 2
+
+        return array
 
 def run_sorting_algorithm(algorithm, array):
     # Create an instance of Sorter
