@@ -15,6 +15,7 @@ class Uebung:
         q2.put(4)
         q2.put(5)
         print(q2.full())
+        return q1
 
         item = q2.get()
         print(item)
@@ -28,6 +29,8 @@ class Uebung:
         stack.put(1)
         stack.put(2)
         stack.put(3)
+        #ggf anpassen für werte
+        return stack
 
         print(stack.get())
         print(stack.get())
@@ -51,20 +54,37 @@ class Uebung:
             buffer = qsrc.get()
             self.revers_queue(qsrc, qdest, zaehler_laenge)
             qdest.put(buffer)
-            print(qdest.qsize())
+            #print(qdest.qsize())
         return qdest
+
+    @staticmethod
+    def peek(q,i):
+        print(f'Stackelement {i} anschauen, WERT {q.queue[i]}')
+
+    @staticmethod
+    def show(q):
+        for i in range(q.qsize()):
+            print(f"{i:3d}tes Element {q.queue[i]:3d}")
 
     @staticmethod
     def main():
         zaehler_laenge = []
         q4dest = Queue()
-        q4 = Uebung.q_4_erstellen()
+        #q4 = Uebung.q_4_erstellen()
         uebung_instance = Uebung()
-        qReversed = uebung_instance.revers_queue(q4, q4dest, zaehler_laenge)
-        while not qReversed.empty():
-            print(qReversed.get())
+        #qReversed = uebung_instance.revers_queue(q4, q4dest, zaehler_laenge)
+        #while not qReversed.empty():
+         #   print(qReversed.get())
 
-        print(len(zaehler_laenge), zaehler_laenge)
+        #print(len(zaehler_laenge), zaehler_laenge)
+
+        test = uebung_instance.LIFO()
+        q4dest = LifoQueue()
+        qtest = uebung_instance.revers_queue(test, q4dest, zaehler_laenge)
+        qtest2 = LifoQueue()
+        qtest2 = qtest
+        while not qtest2.empty():
+            print(qtest2.get())
 
 if __name__ == "__main__":
     uebung = Uebung()
